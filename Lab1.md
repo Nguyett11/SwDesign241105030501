@@ -11,7 +11,7 @@
      + Data Access Layer (Tầng truy cập dữ liệu): Giao tiếp với cơ sở dữ liệu để lấy và cập nhật thông tin về nhân viên, lương, giờ làm việc, v.v.
      + Database Layer (Tầng cơ sở dữ liệu): Lưu trữ toàn bộ dữ liệu của hệ thống, bao gồm thông tin nhân viên, lịch sử lương và các khoản chi trả.
    - Biểu đồ UML Package cho Hệ thống Payroll:
-     ![UMLPackage](https://www.planttext.com/api/plantuml/png/h98zRiCm38LtdO8Ny0Ko56cS5WcGmMYH0n0oOmZHZqlIWr3qP1rwf5wXYeiwHfoncWI-nu_YWxu_lzQYo3e4RuoSNGHEGiQeKq_Ge3rZHm8Lr1v5OEkmOmp6zByAD4n2KL5TYWVCn03l1i2ExgCGxwCIdz3ILDrXR3t92xqD9FgSE9YFAt0pY8iaSaYTimlYAthaNACT_3Xo4cecL7eAlK-PIER4BIe-MdjX_XTkWq9Bc2QUMlRnb2QbmSp9-vsJOidpSYZPZTOoO1bbLJtSosC5BVKKMoWFlYDVkcvtdhVSQd_-wr9pTpdhSYt_umS00F__0m00)
+     ![UML](https://www.planttext.com/api/plantuml/png/T9112eD034NtEKKkC1VeebZhqeLN26EGGPsHILoKqfEvw95wXIgbEDXfLe7tFZ_ajJmBKOewZmE0zCvZ3C80wdHWRCZsrB6WmUj08bWvwYAD0DE7O1DPs2kf2xwc6qV4EpnsNixYF8lKeNCs9rIaTB5sK_xGaeHJzbjfp3bNTCAM9_Oj1WyPlAMExMdaoBx-VazghrEiw_h7Dm000F__0m00)
 
 ## 2. Cơ chế phân tích
 ###  Danh sách các cơ chế phân tích trong hệ thống Payroll:

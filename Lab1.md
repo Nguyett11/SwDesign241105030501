@@ -11,7 +11,7 @@
      + Data Access Layer (Tầng truy cập dữ liệu): Giao tiếp với cơ sở dữ liệu để lấy và cập nhật thông tin về nhân viên, lương, giờ làm việc, v.v.
      + Database Layer (Tầng cơ sở dữ liệu): Lưu trữ toàn bộ dữ liệu của hệ thống, bao gồm thông tin nhân viên, lịch sử lương và các khoản chi trả.
    - Biểu đồ UML Package cho Hệ thống Payroll:
-     ![UML](https://www.planttext.com/api/plantuml/png/T9112i9034NtEKKkC5UGMhliebS8OnX2fpCoIHSYdio5H_8AEeXKQitolmSFyhZT6pKgDayHG4T9MB8oW8b5ne7yI84L7HuYgM8d50fD0AStmQ6mSZ8ooQcdCnV42rmNtiugYLNx7CHl2HqPxRsloX_Qal8t-qqwjziAmSPMrNKIriD7MihmkeRJiRxf2G00__y30000)
+     ![UML](https://www.planttext.com/api/plantuml/png/T9112i9034NtEKKkO8yWjNRPHQyGnb12fpCoIHSYdgmBZ-GLT12fr37B_nuyo6EvrsgKR9uyW8uIC4Lb01FpZ3svaGPMtE7HaogsGaEY2U3y9jWdLWv69Z5qTE64U8NRofjP9R1g5mTn9Q4beuDpMVb36rB-Ph_9gjgNGb3OihfDmdRuI6iPNbTpEEKtFG400F__0m00)
 
 ## 2. Cơ chế phân tích
 ###  Danh sách các cơ chế phân tích trong hệ thống Payroll:
@@ -40,7 +40,7 @@ Hệ thống kiểm tra quyền truy cập và trạng thái của đơn hàng t
     -  Lớp Controller: SelectPaymentController
     -  Lớp Entities: Employee và Payment
 ### b. Biểu Sequence của ca sử dụng Select Payment
-![Sequence](https://www.planttext.com/api/plantuml/png/T9112i9034NtEKKkC5UGMhliebS8OnX2fpCoIHSYdio5H_8AEeXKQitolmSFyhZT6pKgDayHG4T9MB8oW8b5ne7yI84L7HuYgM8d50fD0AStmQ6mSZ8ooQcdCnV42rmNtiugYLNx7CHl2HqPxRsloX_Qal8t-qqwjziAmSPMrNKIriD7MihmkeRJiRxf2G00__y30000)
+![Sequence](https://www.planttext.com/api/plantuml/png/h5InJi906Dxx57-ODD4NO70H1sCm9B0urd9o5ygrjbUIpax6E30QOomIOo2IE3ZHmU48xt5Fu2luNqNI5YWOxN9fx-xx_k_xl_wVySTHnxMTa13OFu1ww0lIEUQ2U1UcHQ0CXrJ5jnnSEdkRzNaB1BuFBLnCJa4uii-D_2N4gPbXXt1H9O8wpJgnYIMOmn7k1Ay_CfZsL7o7Q9T12CAJhuXbRIPQWufy2mrbE9EZ02mrUGc0K_d4eSlaY6y13pkb6hFQ-u5RseDIrMIsNYlCGnge4DVncIZj6ccxrifiU6eo05l53mowAhvdXSJJdXpC2pGCqnPGonrU56O0FkjjoEpevgd9s4KRS15B5TWooW4RnFR9CdbYnGRcvU2a-g2xVMCc2g-XfU8n0ryEhGIoE7sdD55G1B0fVLlPa4YSTof3PgduEJbvLUHGBYH_yKheiFAM3YwL4N9qiJvVnJtSYHYqgOF9ujjRzmkyVt4oPyNSKq7bkpx8U9RM8BnfPF_hrMeQtm3diky0TL28Xepqs4XLj6eIfIP36kFdjlxo1G00__y30000)
 ### c. Nhiệm vụ của từng lớp phân tích:
       - PaymentForm: Đây là lớp Boundary (biên) vì nó đóng vai trò là lớp giao tiếp giữa hệ thống và nhân viên (Employee). Lớp này hiển thị thông tin đến người dùng và nhận dữ liệu đầu vào từ họ.
       - SelectPaymentController: Đây là lớp Controller (điều khiển), có trách nhiệm xử lý logic của quy trình chọn phương thức thanh toán. Lớp này điều phối các yêu cầu và phản hồi giữa các lớp Boundary và Entity, đảm bảo rằng thông tin chọn phương thức thanh toán được xử lý đúng cách.
@@ -67,5 +67,46 @@ Hệ thống kiểm tra quyền truy cập và trạng thái của đơn hàng t
 ### f. Biểu đồ lớp mô tả lớp phân tích
 ![class](https://www.planttext.com/api/plantuml/png/DCwn3OGm30NGtbDu0NO00jH8J9035qXEZ8mfCjiLDzAj01PGVUdvVyd_xw_UBQeTYG4-SkGbQi4nbaJP1j64SSS6PiccmZWHqspFETp8f5vguQBL2lPfOob4Zk75P-BM0JHOLTUWzGXuPuS0DUN5Fpa1003__mC0)
 ## 4. Phân tích ca sử dụng Maintain Timecard
-
+### a. Các lớp phân tích cho ca sử dụng Selected Payment
+    -  Lớp Boundary: EmployeeUI
+    -  Lớp Controller: TimecardController
+    -  Lớp Entities: Timecard, Employee
+### b. Biểu Sequence của ca sử dụng Select Payment
+![sequence](https://www.planttext.com/api/plantuml/png/b5H1Rjim4Bph5OHFwQ4VAE0Yg1B01feWWEq7qDHMOYkH0hbKwtFFFUG11OBsK210qBjzw47vY5wGBtJ5M8WiqIvw4S2TqUxCBAMdtPzpYzoWA_8euWArOPT5cUiDG1IL14WXIwwGJRhoQZvXtBBL_11UoW84Dqci5HgTvs0yxUKOfdlICZu4Rup-20AlkE8f5A3mWYDVSmkUVNDryMuWpHXjPbmbtTJBMHHDf-mwgtyeLidwNh77syUlAcKgQxOF9QlgExPkjh-HwitsbsF2bpsA3BDczrsoL7B5fjCewgoprs_9Dtl3SftErTchY0vKUl5847UOaM8fE4Bt7Z6Z7gdNHQg54mAiRIa3nPlwtkiYTL-Wy9B_JsKYRPdpJHTrMAy1D18gwB46MfSnqLB0s1b3pdf4GWBjd577cnqHDlGkoDitnMopksLOtqdsATFDzgVoAUntwC5KKWXX-nPokaHnnaqArwvOWpcTG9zfnyhRQxSFOa3qoB2hw9FUIukdinWD7zcXwC7CjFDmm8Rb5Jp3MViCht542gpG8miY7bkVpVHdAd-Gfk0ejGhiBsrs3_BVDzIwTI7nz0KTSKA-AfxBXBwuBf-0hJs5zFO-kL14W0lawEpPv7aqGZ89ThIUjYhRmQUoMhHjh3sSV0ugQN-wVm400F__0m00)
+### c. Nhiệm vụ của từng lớp phân tích:
+      - EmployeeUI: Đây là lớp giao diện người dùng cho phép nhân viên tương tác với hệ thống. Nó hiển thị thông tin thời gian và nhận đầu vào từ người dùng.
+      - TimecardController: Lớp này xử lý logic của ứng dụng và kết nối giữa giao diện người dùng và lớp entity. Nó quản lý việc gửi thông tin thời gian làm việc đến hệ thống và xác thực các giờ làm việc.
+      - Timecard: Lớp này đại diện cho thông tin thời gian làm việc của nhân viên. Nó lưu trữ các thuộc tính như ID thời gian, ngày bắt đầu, ngày kết thúc, số giờ làm việc và trạng thái của thời gian.
+      - Employee: chứa thông tin cơ bản của nhân viên như mã nhân viên, tên, và truy xuất thông tin liên quan đến thời gian làm việc của họ.
+### d. Một số thuộc tính và phương thức của các lớp phân tích:
+      - EmployeeUI: không có thuộc tính, hiển thị giao diện tương tác với nhân viên.
+      - TimecardController: 
+        + submitTimecard(): Phương thức này được gọi khi nhân viên muốn gửi thông tin thời gian làm việc của họ. Nó thực hiện các bước xác thực và cập nhật trạng thái của thời gian.
+        + validateHours(): Phương thức này kiểm tra tính hợp lệ của số giờ làm việc mà nhân viên đã nhập.
+        + retrieveChargeNumbers(): Phương thức này được gọi để lấy danh sách các số tài khoản mà nhân viên có thể sử dụng khi nhập giờ làm việc.
+        + retrieveTimecard(): Phương thức này truy xuất thời gian hiện tại của nhân viên.
+        + saveHours(): Phương thức này lưu trữ số giờ làm việc mà nhân viên đã nhập vào đối tượng Timecard.
+      - Timecard: 
+        + timecardId
+        + startDate
+        + endDate
+        + hoursWorked (mảng chứa số giờ làm việc theo từng số tài khoản)
+      - Employee:
+        + employeeId: ID duy nhất của nhân viên.
+        + name: Tên nhân viên.
+        + Chức vụ
+        + Giới hạn giờ làm việc (như số giờ tối đa cho phép)
+        + payment: Tham chiếu đến phương thức thanh toán của nhân viên, kiểu Payment.
+      
+### e. Mối quan hệ giữa các lớp
+      - EmployeeUI giao tiếp với TimecardController để cho phép nhân viên thực hiện các hành động như xem và cập nhật thông tin thời gian. EmployeeUI gửi yêu cầu tới TimecardController..
+      - TimecardController quản lý đối tượng Timecard: Tạo, lưu trữ thông tin, xác thực giờ làm việc và thay đổi trạng thái.
+Giao tiếp với ProjectManagementDatabase để lấy danh sách các số tài khoản (ChargeNumber) mà nhân viên có thể sử dụng.
+      - Timecard chứa danh sách các ChargeNumber và số giờ làm việc, lưu trữ thông tin về số giờ làm việc cho từng số tài khoản.
+      - Mỗi đối tượng Timecard có thể được liên kết với một đối tượng Employee, cho phép theo dõi thời gian làm việc của từng nhân viên.
+      - TimecardController có thể sử dụng thông tin từ lớp Employee để xác thực và quản lý thông tin thời gian cho nhân viên.
+### f. Biểu đồ lớp mô tả lớp phân tích
+![classUML](https://www.planttext.com/api/plantuml/png/UhzxlqDnIM9HIMbk3XTNKdvfNafYKQM2Qsv1JdvbQcgefq9YiO8ZLt9-NabHVev2I6PkQd9YKOepX9-JMWIIT-9ApIl9BAc4IuC4dM62CBD0WYvSN8uAkhf07KuWoba1GhieS3c3QIukBeVKl1IWOm00003__mC0)
 ## 5. Hợp nhất kết quả phân tích
+![UMLHopNhat](https://www.planttext.com/api/plantuml/png/L8zD3i8W48NtSugvGE_GbfR6dObw0AIpQCAFeNJ1sRhmI5v1HehHrHU-z-25r_virwX2tAm1kFlDpIeaFAjaoKNfWqMrOWVQknYymGiPql68HP660fTwo6g92KVxC3uHiHHL7bVO3Jz3jNixSJ9-TwwB9Qt2_3yXwsirPZa1TDWqURzd22mS4CI7C38aICPKv5HEkGijkJb__Wq00F__0m00)
+

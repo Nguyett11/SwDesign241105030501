@@ -72,7 +72,7 @@ Hệ thống kiểm tra quyền truy cập và trạng thái của đơn hàng t
     -  Lớp Controller: TimecardController
     -  Lớp Entities: Timecard, Employee
 ### b. Biểu Sequence của ca sử dụng Select Payment
-![sequence](https://www.planttext.com/api/plantuml/png/f5InJiCm4Dtz5QTE8D4VO62Xi21G9Rem1jUgBLmxf4wbp4m8CNH42D62409HYO6f6HYC-0z_0R_0EQGbJTLI88jbd--zTy-N-qXV0sfq15ljKEg4CSAK4IRvtX_gM3M3A85waBGnkAsZDg5QcKXBs6UIKPD7DhyE9Ol687c043A6W-f64GZMOPExz5n1oD-VtmUg1GRt3nING74msWuKAIPW_XnInDh1t6i1RpsNNY3KSPo0YUmJ0j6VMUR18kD4_JeSsCSOg1lTnw2ulL7G5VPHBO4FAvMwe4VLEAoiGMKt4DAlDH4XATHOg3l2L5QdZ9fVQ2DoerkGBhqIq7NffLZ8_DQpjxb2GW9fe5wwF5560By5HkI7_jdSQ1YY1RYO6N9f-oLCmcI7pV9cDYn9clTBuG7yEvy5MMMdq7BfK437Fj0CRtx3xV5C-gBaKiFzfkgielnDfYYeI--ocoUB32drmv-jCRufLSitABTz9EYYk8vBUnZf2pZY6Xj8BUVKBx3-OLofyjn2m-sBloZKD1bEc2OP3uPPvOslj4CxqC0rYlP0VJy72ZhASwNmbnVpnvd-v1C00F__0m00)
+![sequence](https://www.planttext.com/api/plantuml/png/b5J1Qjj04BtlLmmv9T3-WC4bO4fJ6d9o3ZskfKLQkbgPrQw8pZdqK0enFVHG2cv3AHW2EHGAqg675VcF_OB-GaUIBIbsb3ew66btvhrvCs_yj_Xpd6Ygj8a4ePwE5RoCvYBE62Eps4YVggmzENzDl5Xg5GkOyeXvLFcJvbimHPZKN6VjpUQxXIFZCPo5zhk4bDkLX79HNie0PEZocpcaTWcPNHdmNFxJm0MBG8Uk-CeXu5I2iCi8yrpnteFnc6n0uVcBNdKZAAzwc8DHRpiUhoQlu_KG8UboAwHTwIDGJ2lEKhQvEpmYP3UkNyS8tY3u9QfK58djBonRSucbj1qYLEYM3SAg5WdQvTyuUE7TBQQvujFwX00-3pDkJaSmnSYuGunSyOKJ9X8sm58kxFNJIPJ9uCAu_CT0yMWC_-7kR8tff6gGhAVoeOEgZ389gGhOcObcJ2KxnXgSwIF6cM3OHtaFk6PQkpDnnG8n4Eg9naXeoavYev93hmVz3CBgRD0aNJTFxsxD4Fksxi0LDxnhr2DgUmjmFsaVHMOMSVr_etSQKYguJ_Mw3qUrhLzjgm4SmFKS1BxlPRFookM_SRmABLMjJcZHi8W71qs1cla7zGJnPXM13EmoQyJk1L_tlUtAS4Q_gzDcYsSMbmnPbp84hpffLcnNyRicVY_XGpoOzdczKSVuM_sB_mC00F__0m00)
 ### c. Nhiệm vụ của từng lớp phân tích:
       - EmployeeUI: Đây là lớp giao diện người dùng cho phép nhân viên tương tác với hệ thống. Nó hiển thị thông tin thời gian và nhận đầu vào từ người dùng.
       - TimecardController: Lớp này xử lý logic của ứng dụng và kết nối giữa giao diện người dùng và lớp entity. Nó quản lý việc gửi thông tin thời gian làm việc đến hệ thống và xác thực các giờ làm việc.
@@ -100,8 +100,7 @@ Hệ thống kiểm tra quyền truy cập và trạng thái của đơn hàng t
       
 ### e. Mối quan hệ giữa các lớp
       - EmployeeUI giao tiếp với TimecardController để cho phép nhân viên thực hiện các hành động như xem và cập nhật thông tin thời gian. EmployeeUI gửi yêu cầu tới TimecardController..
-      - TimecardController quản lý đối tượng Timecard: Tạo, lưu trữ thông tin, xác thực giờ làm việc và thay đổi trạng thái.
-Giao tiếp với ProjectManagementDatabase để lấy danh sách các số tài khoản (ChargeNumber) mà nhân viên có thể sử dụng.
+      - TimecardController quản lý đối tượng Timecard: Tạo, lưu trữ thông tin, xác thực giờ làm việc và thay đổi trạng thái. Giao tiếp với ProjectManagementDatabase để lấy danh sách các số tài khoản (ChargeNumber) mà nhân viên có thể sử dụng.
       - Mỗi đối tượng Timecard có thể được liên kết với một đối tượng Employee, cho phép theo dõi thời gian làm việc của từng nhân viên.
       - TimecardController có thể sử dụng thông tin từ lớp Employee để xác thực và quản lý thông tin thời gian cho nhân viên.
 ### f. Biểu đồ lớp mô tả lớp phân tích

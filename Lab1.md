@@ -1,4 +1,4 @@
-## BÀI TẬP
+## LAB 1
 ## 1. Phân tích kiến trúc 
    - Lựa chọn kiến trúc: Kiến trúc phân lớp (Layered Architecture)
    - Lý do lựa chọn:

@@ -45,7 +45,7 @@ Hệ thống kiểm tra quyền truy cập và trạng thái của đơn hàng t
       - PaymentForm: Đây là lớp Boundary (biên) vì nó đóng vai trò là lớp giao tiếp giữa hệ thống và nhân viên (Employee). Lớp này hiển thị thông tin đến người dùng và nhận dữ liệu đầu vào từ họ.
       - SelectPaymentController: Đây là lớp Controller (điều khiển), có trách nhiệm xử lý logic của quy trình chọn phương thức thanh toán. Lớp này điều phối các yêu cầu và phản hồi giữa các lớp Boundary và Entity, đảm bảo rằng thông tin chọn phương thức thanh toán được xử lý đúng cách.
       - Employee chứa thông tin cơ bản của nhân viên như mã nhân viên, tên, và phương thức thanh toán.
-      - PaymentMethod lưu trữ các chi tiết về phương thức thanh toán (loại thanh toán, địa chỉ hoặc thông tin tài khoản ngân hàng).
+      - Payment lưu trữ các chi tiết về phương thức thanh toán (loại thanh toán, địa chỉ hoặc thông tin tài khoản ngân hàng).
 ### d. Một số thuộc tính và phương thức của các lớp phân tích:
       - PaymentForm: không có thuộc tính, tập trung vào các phương thức hiển thị yêu cầu nhập thông tin và trả lời thông báo cho nhân viên.
       - SelectPaymentController: 

@@ -17,21 +17,21 @@
 ###  Danh sách các cơ chế phân tích trong hệ thống Payroll:
 ###  a. Cơ chế xác thực và phân quyền: 
       Hệ thống Payroll lưu trữ thông tin nhạy cảm, bao gồm thông tin cá nhân và bảng lương của nhân viên. Do đó, cần đảm bảo rằng chỉ những người dùng được ủy quyền (như quản lý, nhân viên phòng nhân sự, và nhân viên kế toán) mới có thể truy cập vào các phần dữ liệu hoặc thực hiện các hành động nhất định.
-###  c. Cơ chế tính toán lương
+###  b. Cơ chế tính toán lương
       Hệ thống cần tính toán bảng lương dựa trên các yếu tố như số giờ làm, lương cơ bản, hoa hồng, và các quy định khác (ví dụ làm thêm giờ). Việc tự động hóa giúp tăng độ chính xác và giảm thiểu rủi ro sai sót trong tính toán thủ công.
-###  d. Cơ chế thanh toán đa phương thức
+###  c. Cơ chế thanh toán đa phương thức
       Nhân viên có thể lựa chọn phương thức thanh toán: nhận lương qua thư, lấy tại văn phòng, hoặc chuyển khoản trực tiếp vào tài khoản ngân hàng. Hệ thống cần hỗ trợ việc tích hợp với hệ thống ngân hàng để xử lý thanh toán tự động.
-###  e. Cơ chế lập lịch tự động và xử lý hàng loạt
+###  d. Cơ chế lập lịch tự động và xử lý hàng loạt
       Đảm bảo hệ thống tự động chạy bảng lương vào thứ Sáu hàng tuần và vào ngày làm việc cuối cùng của tháng mà không cần can thiệp thủ công.
-###  g. Cơ chế quản lý dữ liệu nhân viên
+###  e. Cơ chế quản lý dữ liệu nhân viên
      Hệ thống cần quản lý toàn bộ thông tin liên quan đến nhân viên như hợp đồng lao động, giờ làm việc, chế độ phúc lợi và thông tin ngân hàng, thông tin này thay đổi theo thời gian (lương, thăng chức, điều chỉnh hợp đồng). Do đó cần một cơ chế để theo dõi và cập nhật dữ liệu.
-###  h. Cơ chế quản lý bảng chấm công
+###  f. Cơ chế quản lý bảng chấm công
       Nhân viên ghi nhận giờ làm việc hàng tuần vào bảng chấm công, bao gồm thời gian làm và dự án được tính phí.
      Nhân viên hưởng hoa hồng (Commissioned Employee) có thể thêm, cập nhật, hoặc xóa đơn hàng để ghi nhận doanh thu và nhận hoa hồng.
-###  l. Quản lý đơn hàng
+###  g. Quản lý đơn hàng
       Nhân viên hưởng hoa hồng (Commissioned Employee) có thể thêm, cập nhật, hoặc xóa đơn hàng để ghi nhận doanh thu và nhận hoa hồng.
 Hệ thống kiểm tra quyền truy cập và trạng thái của đơn hàng trước khi cho phép cập nhật hoặc xóa.
-###  m. Quản lý báo cáo
+###  h. Quản lý báo cáo
       Payroll Administrator có thể tạo báo cáo "Total Hours Worked" hoặc "Pay Year-to-Date" dựa trên các tiêu chí đầu vào (loại báo cáo, ngày bắt đầu và kết thúc, tên nhân viên). Báo cáo có thể được lưu với tên và vị trí do Payroll Administrator chỉ định hoặc sẽ bị hủy nếu không lưu.
       
 ##  3. Phân tích ca sử dụng Select Payment

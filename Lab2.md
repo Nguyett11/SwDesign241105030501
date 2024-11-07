@@ -60,3 +60,57 @@
 - Lớp Boundary: EmployeeUI
 - Lớp Controller: EmployeeReportController
 - Lớp entities: ReportGenerator, Report, ReportStorage
+### b. Biểu đồ Sequence
+![CreateEmployeeReport](https://www.planttext.com/api/plantuml/png/Z5JDYXD14BxtKnHxqiE-G0wocIIx2gk8Hj1ZfzDaHcUwGwSdx1p5moABXnn4H0HZa8M5u8gAE7tmq67Vev_0Lx2w9_zcqJaqpLTVVLLVTJ6_pQ-3WQPAvrbAADDIGIlhfxBWd7HaBhfK5KlaqHsW0wWJ9eLMCbtY3tXVAjseq9Ghpue85phH1LJ18owuebuUOutDc8UQcz13PD8Uzv4MwL9DEtJ0uRwIJpdJTwd0M8O9pSWp3WbPT0Bxjw1UWyYLdpNCHguypw6m5pcmSDMk74leM3mO7gJk-L4DZfoP9g2Jm8pjT8r2Kmt74lEI5GYf_G1xRMTUYnuCd1b1Bt7clOSp6EBrbA6CXCoPjngwpdm1EnPx1F2BVCd36hHLNi19xifFoA0YXe4TinWoEwaKcVs6ufLOI3o4_QhPjdBb1DBGqdzbHlEft4ReXG0TEtFspynWu5viFme4x8K8IbjZRg3IAt5DPIww95HkOCkRSmyZeQ0LwgvDdJGylVaNdJHtML-fpKROG7XQijFgYhdjQV7-JrOhabvTvciPDxJzMM2UDtgpac_Lu7YJD7Jc7QwFTpF4pHZwecXkMdNcar_wPJHd8YQjXPV7E7iGiIkdOjlBR7HrwSo4XMQMdjfn66zdXn5VyZcSh2bksY1XZUS2EX7mhBeo-nLVhlmk8COL_y4ME7OywUESpUdr2wJNsa7ccsJNXhIHEfq_sBm48kS5PbE94njNUq8EyCG_q1y0003__mC0)
+### c. Nhiệm vụ của từng lớp phân tích:
+- EmployeeUI: Là giao diện người dùng để giao tiếp giữa hệ thống và nhân viên. Hiển thị các form để nhập tiêu chí báo cáo và hiển thị kết quả báo cáo cho nhân viên. Nhận các lệnh từ nhân viên, chẳng hạn như chọn loại báo cáo, nhập ngày bắt đầu và ngày kết thúc, và chọn số mã công việc.
+- EmployeeReportController: Điều khiển luồng xử lý của use case. Nhận dữ liệu từ EmployeeUI và xử lý logic cần thiết để tạo báo cáo. Gọi các phương thức từ các lớp thực thể như ReportGenerator để thực hiện công việc tạo báo cáo. Xử lý các điều kiện lỗi và phản hồi lại EmployeeUI khi có thông tin không hợp lệ hoặc thiếu.
+- ReportGenerator: Chịu trách nhiệm thu thập dữ liệu và xử lý chúng để tạo báo cáo theo tiêu chí được cung cấp. Truy cập dữ liệu từ cơ sở dữ liệu hoặc từ các nguồn khác để tổng hợp thông tin cần thiết cho báo cáo. Tạo ra các thực thể báo cáo (Report) sau khi xử lý dữ liệu.
+- Report: Là thực thể đại diện cho báo cáo đã được tạo ra.Chứa các thông tin về báo cáo như nội dung, loại báo cáo, thời gian bắt đầu và kết thúc, và các thông tin liên quan. Được dùng để truyền dữ liệu báo cáo đã xử lý từ ReportGenerator đến EmployeeReportController và hiển thị trên EmployeeUI.
+- ReportStorage: Quản lý việc lưu trữ và quản lý báo cáo. Thực hiện việc lưu báo cáo vào vị trí được chỉ định với tên cụ thể. Xác nhận và phản hồi lại cho EmployeeReportController về trạng thái lưu trữ báo cáo (thành công hoặc thất bại).
+### d. Một số thuộc tính và phương thức của các lớp phân tích:
+- Lớp EmployeeUI:
+  + reportType: Loại báo cáo mà nhân viên chọn.
+  + startDate: Ngày bắt đầu cho báo cáo.
+  + endDate: Ngày kết thúc cho báo cáo.
+  + chargeNumber: Số mã công việc (chỉ có trong báo cáo "Tổng số giờ làm việc cho một dự án").
+  + displayReport(): Hiển thị báo cáo cho nhân viên.
+  + getReportCriteria(): Nhận tiêu chí báo cáo từ nhân viên.
+  + showError(): Hiển thị thông báo lỗi nếu có vấn đề xảy ra.
+- Lớp EmployeeReportController:
+  + reportGenerator: Thực thể ReportGenerator để tạo báo cáo.
+  + reportStorage: Thực thể ReportStorage để lưu báo cáo.
+  + employeeUI: Thực thể EmployeeUI để giao tiếp với nhân viên.
+  + processReportRequest(): Xử lý yêu cầu tạo báo cáo.
+  + generateReport(): Gọi ReportGenerator để tạo báo cáo.
+  + saveReport(): Lưu báo cáo vào vị trí chỉ định thông qua ReportStorage.
+  + handleError(): Xử lý lỗi và thông báo lại cho giao diện người dùng.
+- Lớp ReportGenerator:
+  + reportType: Loại báo cáo (“Total Hours Worked,” “Total Hours Worked for a Project”, “Vacation/Sick Leave,” or “Total Pay Year-to Date”).
+  + startDate: Ngày bắt đầu báo cáo.
+  + endDate: Ngày kết thúc báo cáo.
+  + chargeNumber: Mã số công việc (chỉ có trong loại báo cáo dự án).
+  + generateTotalHoursReport(): Tạo báo cáo "Tổng số giờ làm việc".
+  + generateProjectReport(): Tạo báo cáo "Tổng số giờ làm việc cho một dự án".
+  + generateLeaveReport(): Tạo báo cáo "Vacation/Sick Leave".
+  + generateTotalPayReport(): Tạo báo cáo "Total Pay Year-to-Date".
+- Lớp Report:
+  + reportType: Loại báo cáo (“Total Hours Worked,” “Total Hours Worked for a Project”, “Vacation/Sick Leave,” or “Total Pay Year-to Date”).
+  + startDate: Ngày bắt đầu của báo cáo.
+  + endDate: Ngày kết thúc của báo cáo.
+  + content: Nội dung của báo cáo (bao gồm số liệu, tổng hợp, v.v.).
+  + generateContent(): Tạo nội dung báo cáo dựa trên các dữ liệu đầu vào.
+  + display(): Hiển thị báo cáo cho người dùng.
+- Lớp ReportStorage:
+  + fileName: Tên của báo cáo.
+  + fileLocation: Vị trí lưu báo cáo.
+  + saveReport(): Lưu báo cáo vào tệp với tên và vị trí xác định.
+  + confirmSave(): Xác nhận báo cáo đã được lưu thành công.
+### e. Mối quan hệ giữa các lớp
+- EmployeeUI: Giao tiếp trực tiếp với nhân viên, nhận yêu cầu và hiển thị kết quả báo cáo. Kết nối với EmployeeReportController để xử lý logic.
+- EmployeeReportController: Xử lý luồng logic của use case, tương tác với ReportGenerator để tạo báo cáo và ReportStorage để lưu báo cáo. Sau đó, nó truyền kết quả cho EmployeeUI.
+- ReportGenerator: Chịu trách nhiệm tạo ra báo cáo dựa trên tiêu chí từ EmployeeReportController. Sau khi tạo xong, trả báo cáo cho EmployeeReportController.
+- Report: Lưu trữ thông tin báo cáo đã tạo từ ReportGenerator. EmployeeReportController sử dụng báo cáo này để hiển thị hoặc lưu trữ.
+- ReportStorage: Quản lý việc lưu trữ báo cáo. EmployeeReportController yêu cầu ReportStorage lưu báo cáo vào vị trí chỉ định.
+### f. Biểu đồ lớp mô tả lớp phân tích
+![CreateAdministrativeReport](https://www.planttext.com/api/plantuml/png/L8x12SCm34Nlca8BP8SajYczjdG0jH6bu5X1KGwUBOUEr1KQnwMGquFtFaAVzTtEHchB607kigI1D6COfoYP-NP6ch63XoHJYNz_uKdKNBMHjQnwu6GlorZZYHChcUpD7LjH_gYksvAUN4e0wB1fjeDzWSDA_sC0lmCHeEKqbC-_0000__y30000)

@@ -114,3 +114,42 @@
 - ReportStorage: Quản lý việc lưu trữ báo cáo. EmployeeReportController yêu cầu ReportStorage lưu báo cáo vào vị trí chỉ định.
 ### f. Biểu đồ lớp mô tả lớp phân tích
 ![CreateAdministrativeReport](https://www.planttext.com/api/plantuml/png/L8x12SCm34Nlca8BP8SajYczjdG0jH6bu5X1KGwUBOUEr1KQnwMGquFtFaAVzTtEHchB607kigI1D6COfoYP-NP6ch63XoHJYNz_uKdKNBMHjQnwu6GlorZZYHChcUpD7LjH_gYksvAUN4e0wB1fjeDzWSDA_sC0lmCHeEKqbC-_0000__y30000)
+## 3. Ca sử dụng Login
+### a. Các lớp phân tích
+- Lớp Boundary: LoginUI
+- Lớp Controller: LoginController
+- Lớp entities: Authenticator, User
+### b. Biểu đồ Sequence
+![Login](https://www.planttext.com/api/plantuml/png/X54nRiCm3Dpr2YAJ3JJ8xg68xMG8q2r8TrOYMWEA591I2x-jGv_KBvIoOQT3WMgGJiVJ7KXzVtxj9I6dVFK6ROeC5o4sBp47Xpp2KtmTmkK4AD0Q6qFYw6Uodo-Uk1GxGo4DQOGsfxS2BHOphVHBfHWNuc3C1BUFq3Pm34bnLYBWbG23WnkAV4HsfYsQhW6Xu7ecLupGIxMe7rPfRRgYxHjuHpyuJFIVleVjRCwKCeVbtH23Cf9zWcgYTaEOpjgWSiy5mYzl0xgcx4C3bacJItDd4b6hDRc-wxHdDyZDupYDyPojLN5L6_92S9hJ_ewuFpqoHwusYteTduvyQN6ZZi6PlMxbSty0003__mC0)
+### c. Nhiệm vụ của từng lớp phân tích:
+- LoginUI: Giao diện người dùng cho quá trình đăng nhập, nơi người dùng nhập tên và mật khẩu.
+- LoginController: Xử lý logic đăng nhập. Kiểm tra tính hợp lệ của tên và mật khẩu, xác thực và đăng nhập người dùng.
+- Authenticator: Kiểm tra tính hợp lệ của tên và mật khẩu, xác thực người dùng.
+- User: Lưu trữ thông tin người dùng trong hệ thống (thông tin đăng nhập, mật khẩu, vai trò,...).
+### d. Một số thuộc tính và phương thức của các lớp phân tích:
+- LoginUI: 
+  + username: Tên người dùng.
+  + password: Mật khẩu.
+  + getCredentials(): Nhận tên và mật khẩu từ người dùng.
+  + displayError(message: String): Hiển thị thông báo lỗi nếu thông tin đăng nhập không hợp lệ.
+  + displayLoginScreen(): Hiển thị giao diện đăng nhập cho người dùng.
+- LoginController:
+  + authenticator: Đối tượng thực hiện xác thực tên và mật khẩu.
+  + processLogin(username: String, password: String): Nhận tên và mật khẩu từ LoginUI, gọi Authenticator để kiểm tra tính hợp lệ và thực hiện đăng nhập.
+  + handleLoginError(): Xử lý khi tên hoặc mật khẩu không hợp lệ, yêu cầu người dùng nhập lại hoặc hủy đăng nhập.
+- Authenticator:
+  + validUsernames: Danh sách tên người dùng hợp lệ.
+  + validPasswords: Danh sách mật khẩu hợp lệ (hoặc kiểm tra với cơ sở dữ liệu).
+  + validateCredentials(username: String, password: String): Kiểm tra tính hợp lệ của tên người dùng và mật khẩu.
+- User:
+  + username: Tên đăng nhập của người dùng.
+  + password: Mật khẩu của người dùng.
+  + role: Vai trò của người dùng (ví dụ: quản trị viên, nhân viên).
+  + isValidPassword(password: String): Kiểm tra mật khẩu có đúng với người dùng không.
+  + getRole(): Lấy vai trò của người dùng sau khi đăng nhập thành công.
+### e. Mối quan hệ giữa các lớp
+- LoginUI (Boundary): Tương tác với người dùng, nhận thông tin đăng nhập và hiển thị lỗi khi cần thiết.
+- LoginController (Controller): Quản lý quá trình đăng nhập, sử dụng Authenticator để xác thực tên và mật khẩu, sau đó thực hiện đăng nhập hoặc xử lý lỗi.
+- Authenticator (Entity): Kiểm tra tính hợp lệ của tên người dùng và mật khẩu, trả về kết quả cho LoginController.
+- User (Entity): Đại diện cho người dùng trong hệ thống, chứa thông tin đăng nhập, mật khẩu và vai trò.
+### f. Biểu đồ lớp mô tả lớp phân tích

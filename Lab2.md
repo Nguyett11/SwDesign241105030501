@@ -153,3 +153,57 @@
 - Authenticator (Entity): Kiểm tra tính hợp lệ của tên người dùng và mật khẩu, trả về kết quả cho LoginController.
 - User (Entity): Đại diện cho người dùng trong hệ thống, chứa thông tin đăng nhập, mật khẩu và vai trò.
 ### f. Biểu đồ lớp mô tả lớp phân tích
+![login](https://www.planttext.com/api/plantuml/png/UhzxlqDnIM9HIMbk3XTNKdvfNafYKQM2JtvwPbwefq9YiO8ZLt9-NabHVWv4q1d2oKaj0aawSQNcbMIML2eubfPaW9Z9YINvO1bdc4neCKIf2nUNeuAkBb2B4uXoXb0kNCvWIe6Boo4rBmNa2W00003__mC0)
+## 4. Ca sử dụng Maintain Employee Information
+### a. Các lớp phân tích
+- Lớp Boundary: PayrollAdministratorInterface, EmployeeInformationForm
+- Lớp Controller: MaintainEmployeeController
+- Lớp entities: Employee
+### b. Biểu đồ Sequence
+![MaintainEmployeeInformation](https://www.planttext.com/api/plantuml/png/v5OzRzD06DxlLxpAGZ8Wzaf1ZKAX4IBA4A4odXstFjK-1-UCwfa98IGG0mCBeQeg1JgLoHuwNF_8_OB-1TwpJU9pxDQ2RaHAx7llUTxFvnpVf5Ux2q534VaUeRO8GkXCQ1m6dWU3cSyuMuYGeha3T06J0I5M4F4P3UCrpe2Dk732Gsex6NwzAh7s_BaNn8upueT1w5F10luKRpAylY5sm0NwXSuBohZ0xn_6CD_md3oPpP8uN31HyftjuuAG1p1rvSe7xihl7DumkUAato-CuypuKXkXtoUJ0JnylCaPTc3eglG3XywMZmxPm92pIGL9h-Gg0bibvr4jiOIjH2iHXIj_yICGZ1kP6q5riv2rprJwbYD3fU_1qei8V9NyQ7IIyP2FvMA54I8mvjdyBhXHupELNh0cXbaXZW49KvKi0x1KSihXo6LbF6QRVcMtz6KQ8WqyzC1WzCIWTh71txWBjawafySzLCd5735u4TMfvtlZVA_ry0sFzIMtbKChLwq4OlR135yTR0LREvumYk4aGdXJNcXs0dH5DA5QOtb2hKHnFzf5sZiS_WB5IEzDld3zIPxgpgqdLTinOvIrkcwfw6ELN0bu7MdBjfmFv2MjoZYpjPPlrKDRhMxp_WTXDbHr8fTsFcoEzvUqfgxRqDlJEQX2weg__YYNg8OPLXzL98f79USLLTz9G4rR-fJL1FiRPL9FmFEYeVAdhuzmSXQRp-Ro4NcavTGZW9_cuCRZe1YN9V5_mrFf5mRTSSdxSH5SfP-HeVFjuMl0BCziNwNdSLOgTFyfSEOYwvkhNUOHTl4NNvT-0m00__y30000)
+### c. Nhiệm vụ của từng lớp phân tích:
+- PayrollAdministratorInterface:
+  + Cung cấp giao diện để Quản trị viên tiền lương lựa chọn thao tác muốn thực hiện (thêm, cập nhật, hoặc xóa nhân viên).
+  + Hiển thị các tùy chọn và yêu cầu Quản trị viên cung cấp thông tin liên quan (ví dụ: ID nhân viên khi cập nhật hoặc xóa).
+  + Quản lý việc hiển thị thông báo lỗi hoặc xác nhận khi cần thiết (ví dụ: khi không tìm thấy nhân viên hoặc khi Quản trị viên xác nhận xóa).
+- EmployeeInformationForm: 
+  + Hiển thị biểu mẫu để Quản trị viên nhập thông tin nhân viên (bao gồm tên, địa chỉ, lương, số an sinh xã hội, và các thông tin khác).
+  + Thu thập thông tin từ Quản trị viên và chuyển tiếp cho lớp Controller để xử lý (khi thêm hoặc cập nhật nhân viên).
+  + Cung cấp giao diện để chỉnh sửa thông tin nhân viên khi thực hiện thao tác cập nhật.
+- MaintainEmployeeController:
+  + Xử lý các yêu cầu từ PayrollAdministratorInterface (chọn thao tác thêm, cập nhật, hoặc xóa nhân viên).
+  + Khi thao tác là thêm hoặc cập nhật, yêu cầu EmployeeInformationForm thu thập thông tin nhân viên từ Quản trị viên.
+  + Sau khi nhận thông tin, MaintainEmployeeController sẽ xử lý và thực hiện các thay đổi cần thiết trong lớp Employee (thêm, cập nhật, hoặc xóa).
+  + Quản lý các thông báo và trạng thái kết quả (thành công hoặc lỗi) sau khi hoàn thành thao tác.
+  + Cung cấp các thông tin phản hồi (ví dụ: trả lại ID nhân viên khi thêm mới hoặc kết quả xóa khi thao tác hoàn tất).
+- Employee:
+  + Lưu trữ thông tin về nhân viên như tên, địa chỉ, loại nhân viên, lương, và các dữ liệu liên quan khác.
+  + Cung cấp các phương thức để tạo mới, cập nhật và xóa thông tin nhân viên từ cơ sở dữ liệu.
+  + Khi thao tác là xóa, sẽ đánh dấu nhân viên là đã bị xóa trong hệ thống (thay vì xóa hoàn toàn).
+### d. Một số thuộc tính và phương thức của các lớp phân tích:
+- LoginUI: 
+  + username: Tên người dùng.
+  + password: Mật khẩu.
+  + getCredentials(): Nhận tên và mật khẩu từ người dùng.
+  + displayError(message: String): Hiển thị thông báo lỗi nếu thông tin đăng nhập không hợp lệ.
+  + displayLoginScreen(): Hiển thị giao diện đăng nhập cho người dùng.
+- LoginController:
+  + authenticator: Đối tượng thực hiện xác thực tên và mật khẩu.
+  + processLogin(username: String, password: String): Nhận tên và mật khẩu từ LoginUI, gọi Authenticator để kiểm tra tính hợp lệ và thực hiện đăng nhập.
+  + handleLoginError(): Xử lý khi tên hoặc mật khẩu không hợp lệ, yêu cầu người dùng nhập lại hoặc hủy đăng nhập.
+- Authenticator:
+  + validUsernames: Danh sách tên người dùng hợp lệ.
+  + validPasswords: Danh sách mật khẩu hợp lệ (hoặc kiểm tra với cơ sở dữ liệu).
+  + validateCredentials(username: String, password: String): Kiểm tra tính hợp lệ của tên người dùng và mật khẩu.
+- User:
+  + username: Tên đăng nhập của người dùng.
+  + password: Mật khẩu của người dùng.
+  + role: Vai trò của người dùng (ví dụ: quản trị viên, nhân viên).
+  + isValidPassword(password: String): Kiểm tra mật khẩu có đúng với người dùng không.
+  + getRole(): Lấy vai trò của người dùng sau khi đăng nhập thành công.
+### e. Mối quan hệ giữa các lớp
+- LoginUI (Boundary): Tương tác với người dùng, nhận thông tin đăng nhập và hiển thị lỗi khi cần thiết.
+- LoginController (Controller): Quản lý quá trình đăng nhập, sử dụng Authenticator để xác thực tên và mật khẩu, sau đó thực hiện đăng nhập hoặc xử lý lỗi.
+- Authenticator (Entity): Kiểm tra tính hợp lệ của tên người dùng và mật khẩu, trả về kết quả cho LoginController.
+- User (Entity): Đại diện cho người dùng trong hệ thống, chứa thông tin đăng nhập, mật khẩu và vai trò.
+### f. Biểu đồ lớp mô tả lớp phân tích

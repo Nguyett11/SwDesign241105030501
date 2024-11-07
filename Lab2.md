@@ -221,3 +221,129 @@
 - Employee: Là thực thể dữ liệu, lưu trữ thông tin nhân viên. MaintainEmployeeController thao tác trên Employee để thêm, cập nhật hoặc xóa thông tin nhân viên.
 ### f. Biểu đồ lớp mô tả lớp phân tích
 ![maintainEmployee](https://www.planttext.com/api/plantuml/png/L90nRW9134Lxdy8Nu0AfM1Q8A2Abo0NCxi1QclMWMI_IdY27e4hAI8Y6YYaezYHp0gwG6KK1KLYodj__XM_XEksKlFQj1LYxNcho0xxJu9srHTsoSAUUrFcLgF4RgWnIXyN3NRGxwmPZLh9nlYLb9ykqP6i6bHDDJVX6B9hcNox_k3K-UoKOKTP7LuPpW08d4opn1L-P72h7otK7ipkCuSYepNYMRJeAIZD-2-vv_14eipLFraUJe-DNXViO3enr32Uq7CDd_nI0gP4wV-4N003__mC0)
+## 5. Ca sử dụng Maintain Purchase Order
+### a. Các lớp phân tích
+- Lớp Boundary:  CommissionedEmployeeInterface, PurchaseOrderForm
+- Lớp Controller: MaintainPurchaseOrderController
+- Lớp entities: PurchaseOrder
+### b. Biểu đồ Sequence
+![MaintainPurchaseOrder](https://www.planttext.com/api/plantuml/png/l5IzRjim4Dxv53UcGFe26GBRSf86QDeE6TAHaTcGY4Iw56NKOz6fA39axX8dA0guyDG21QGX0uEy1vyWhv2Z5FzGbJ9MW21GzttVVNT7yg6yxMM6QfEd2Q6nKHeYbQOYouIIRBINZXCrPOoGKvNB4TNJrl2XD4n_e343ca5_ZNsNwvZJZBtL8wRtbKvzV41Y9OrM2HnH8Gs-0IogWmdJ7XmH9eqm3IaV6HBIPWLUxa8VTY3YhhoGO3XLOEmiXgrZRkVfDaIkM8n1SloORJYnl-aBqlUi25a7hbm8cDfv3h4hVkO1tnKprSwFbbdVRpBj7ta6HaYukxoVIU3s2jTRXyDWpPKh_iQRw9WB_BhYrZmP6w3mA-7ABxuSLtw3Kx_88NN5hwuyPB2qz8PNXZjWZSexK8Gc1ghwWz-0JrNw40N-2QE_yhkeGCDbbcFjYXkOkF8pX7rOQrN3ov6ERVmnRi2mEGfxRwybJ8ITIyAIZ0KZwJRu6lMcWPZXJ662JeiTtV3mzi5Cx1KwTELNoI73Xj8DYOesQAamo69lQc9eFIZm6LUh8axyZgtmqcTPaV4qZUff-etxFtlLTFNfsVojxbghypfrLNMQjYkXCQLpVxRWO-wzhyut8JrKyRVW8m000F__0m00)
+### c. Nhiệm vụ của từng lớp phân tích:
+- CommissionedEmployeeInterface:
+  + Cho phép nhân viên có hoa hồng chọn thao tác họ muốn thực hiện (thêm, cập nhật, hoặc xóa đơn hàng).
+  + Hiển thị thông báo và yêu cầu nhập thông tin liên quan đến đơn hàng (ví dụ: ID đơn hàng, thông tin khách hàng, sản phẩm, v.v.).
+  + Hiển thị các thông báo lỗi hoặc xác nhận (ví dụ: đơn hàng không tồn tại, không phải của nhân viên này, hoặc đơn hàng đã đóng).
+- PurchaseOrderForm:
+  + Hiển thị biểu mẫu để nhân viên nhập thông tin chi tiết về đơn hàng (ví dụ: khách hàng, sản phẩm, địa chỉ thanh toán, ngày mua).
+  + Thu thập dữ liệu từ nhân viên và chuyển tiếp cho Controller để xử lý.
+-  MaintainPurchaseOrderController:
+  + Xử lý các yêu cầu từ CommissionedEmployeeInterface (thêm, cập nhật, xóa đơn hàng).
+  + Khi thao tác là Create, yêu cầu PurchaseOrderForm thu thập thông tin đơn hàng từ nhân viên.
+  + Kiểm tra tính hợp lệ của thông tin đơn hàng (ví dụ: đảm bảo đơn hàng không bị đóng, là của nhân viên này).
+  + Tương tác với PurchaseOrder (lớp thực thể) để tạo, cập nhật, hoặc xóa đơn hàng.
+  + Trả về kết quả thành công hoặc lỗi cho CommissionedEmployeeInterface.
+- PurchaseOrder:
+  + Quản lý và xử lý dữ liệu liên quan đến đơn hàng, bao gồm việc tạo, cập nhật, xóa và truy vấn thông tin.
+### d. Một số thuộc tính và phương thức của các lớp phân tích:
+- CommissionedEmployeeInterface: 
+  + selectedAction: Lưu trữ hành động mà nhân viên chọn (Tạo, Cập nhật, Xóa đơn hàng).
+  + employeeId: ID của nhân viên đang thực hiện thao tác.
+  + selectAction(): Cho phép nhân viên chọn thao tác (Tạo, Cập nhật, Xóa).
+  + displayOrderForm(): Hiển thị biểu mẫu để nhân viên nhập thông tin đơn hàng.
+  + displayMessage(String message): Hiển thị thông báo thành công hoặc lỗi cho nhân viên.
+  + getEnteredOrderInfo(): Lấy thông tin đơn hàng mà nhân viên đã nhập vào biểu mẫu.
+- PurchaseOrderForm: 
+  + orderId: ID của đơn hàng cần cập nhật hoặc xóa.
+  + customerName: Tên khách hàng.
+  + billingAddress: Địa chỉ thanh toán của khách hàng.
+  + products: Danh sách các sản phẩm trong đơn hàng.
+  + orderDate: Ngày tạo đơn hàng.
+  + collectOrderDetails(): Thu thập thông tin chi tiết về đơn hàng từ nhân viên.
+  + displayOrderDetails(PurchaseOrder order): Hiển thị chi tiết đơn hàng để nhân viên xem và chỉnh sửa.
+  + getOrderDetails(): Trả về thông tin đơn hàng mà nhân viên đã nhập.
+- MaintainPurchaseOrderController:  
+  + currentAction: Hành động hiện tại mà nhân viên đang thực hiện (Tạo, Cập nhật, Xóa).
+  + currentEmployeeId: ID của nhân viên thực hiện thao tác.
+  + orderService: Dịch vụ hoặc đối tượng giúp xử lý các thao tác liên quan đến đơn hàng (tạo, cập nhật, xóa).
+  + handleCreateOrder(): Xử lý thao tác tạo đơn hàng mới.
+  + handleUpdateOrder(): Xử lý thao tác cập nhật thông tin đơn hàng.
+  + handleDeleteOrder(): Xử lý thao tác xóa đơn hàng.
+  + validateOrderInfo(): Kiểm tra tính hợp lệ của thông tin đơn hàng (đảm bảo thông tin hợp lệ trước khi tạo hoặc cập nhật).
+  + getOrderById(): Lấy thông tin đơn hàng từ ID.
+  + confirmDeletion(): Xác nhận việc xóa đơn hàng từ nhân viên.
+- PurchaseOrder: 
+  + orderId: ID của đơn hàng.
+  + customerName: Tên khách hàng.
+  + customerBillingAddress: Địa chỉ thanh toán của khách hàng.
+  + products: Danh sách các sản phẩm trong đơn hàng.
+  + orderDate: Ngày tạo đơn hàng.
+  + status: Trạng thái đơn hàng (Mở, Đã đóng).
+  + commissionedEmployeeId: ID của nhân viên có hoa hồng đã tạo đơn hàng.
+  + createOrder(): Tạo đơn hàng mới và lưu vào hệ thống.
+  + updateOrder(): Cập nhật thông tin đơn hàng.
+  + deleteOrder(): Xóa đơn hàng khỏi hệ thống.
+  + getOrderById(String orderId): Lấy thông tin đơn hàng bằng ID.
+  + validateOrder(): Kiểm tra tính hợp lệ của đơn hàng (còn mở, là của nhân viên hiện tại, v.v.).
+  + closeOrder(): Đóng đơn hàng sau khi hoàn thành giao dịch.
+### e. Mối quan hệ giữa các lớp
+- CommissionedEmployeeInterface gửi yêu cầu từ nhân viên (chọn thao tác và cung cấp thông tin đơn hàng) đến MaintainPurchaseOrderController, nơi xử lý các thao tác như tạo, cập nhật, và xóa đơn hàng.
+- MaintainPurchaseOrderController yêu cầu PurchaseOrderForm hiển thị biểu mẫu cho nhân viên nhập thông tin đơn hàng hoặc hiển thị thông tin đơn hàng cần cập nhật.
+- MaintainPurchaseOrderController tương tác với PurchaseOrder để tạo, cập nhật, hoặc xóa đơn hàng trong hệ thống.
+- PurchaseOrderForm thu thập thông tin từ nhân viên và cung cấp cho PurchaseOrder để tạo hoặc cập nhật thông tin đơn hàng.
+### f. Biểu đồ lớp mô tả lớp phân tích
+![MaintainPurchaseOrder](https://www.planttext.com/api/plantuml/png/N8wn3G8n34LxJ-45ReUxou54WM25a1WHAR6HunGt6mKZiG842WJ5ro_UqzT_tEvZDQ_MIWOuIUFeTKKdfQHQap35JRbcMObsRAHd7mXznUdh7fk6Ywzqq4Yw5IsTpn24JINZtYUsLtuqzu6PjCiEY2tPtrGd2y24mu0EONutk5uB0ep4iPz-0W00__y30000)
+## 6. Ca sử dụng Run Payroll
+### a. Các lớp phân tích
+- Lớp Boundary:  PayrollInterface, BankSystemInterface
+- Lớp Controller: RunPayrollController
+- Lớp entities: Employee, Payroll
+### b. Biểu đồ Sequence
+![RunPayroll](https://www.planttext.com/api/plantuml/png/X9F1Jjmm48RlVefvWQht7YeskwlI6oezqAF9fciBxnWvOuJFFN3Wn1kGLbLLf1Kz9weukE8z_0HzXOx3Xi22IYwHnj_y_--Pv6ztirEJTEHNHWXPadMm9uEpnamMAusw9YUvACIXzRYGBWp7xv4gzrcM5SWQ9kDn8V5eFzHKhHuHXIWj4ZV21uyRYUbTnLGk4rDH8MaAC5yT6nkglcqs53SjkJONuhc8yEejJE0D5Acz9lXpaTeV7agLsYR0OMg_uHBCxQ_R1fTYajafiv_Y5JCzUPgwDPZuUvkTPdR6x4Vd0vpwr7udMAJk6enEtPa7LF4hmecELtW7ppFCjdPRQdul5TUeW6niS3ZafFQfLBxFBjjyGI2LkdCWny9CaugDtjONqX3igOrWRlXPyakENl6IVNpe1O-KpUq2-EdD2ZPxnrFGiDJIvZkUbmfmcJEfUCa66Is6sHt4fkJ4gLtZmmPHcRfwCSMnqgczyKFqrniTac7CCxkVunRDtyH2Z8lPjHmEg5_CSylB-pZuttQVJFan16eq46A7pVFFyWy00F__0m00)
+### c. Nhiệm vụ của từng lớp phân tích:
+- PayrollInterface: Cung cấp giao diện để hệ thống hiển thị trạng thái và kết quả khi chạy bảng lương. Đây là lớp mà người dùng (chẳng hạn như Payroll Administrator) tương tác để xem báo cáo, xác nhận thanh toán, và thực hiện các thao tác liên quan đến bảng lương.
+- BankSystemInterface: Cung cấp giao diện để kết nối và truyền dữ liệu đến hệ thống ngân hàng để xử lý thanh toán qua chuyển khoản trực tiếp.
+-  RunPayrollController: lớp điều khiển chính trong ca sử dụng Run Payroll, chịu trách nhiệm xử lý các bước như tính toán lương, in phiếu lương, gửi giao dịch ngân hàng, v.v.
+- Employee: Đại diện cho một nhân viên trong hệ thống, bao gồm các thông tin cá nhân và thông tin thanh toán.
+- Payroll: Lớp đại diện cho bảng lương, bao gồm thông tin liên quan đến việc tính toán lương của tất cả nhân viên trong mỗi chu kỳ bảng lương.
+### d. Một số thuộc tính và phương thức của các lớp phân tích:
+- PayrollInterface:
+  + payrollStatus: Trạng thái của việc chạy bảng lương (hoàn thành, lỗi, đang chờ).
+  + employeeList: Danh sách nhân viên đã nhận thanh toán.
+  + displayPayrollStatus(): Hiển thị trạng thái bảng lương.
+  + displayEmployeePaymentDetails(): Hiển thị chi tiết thanh toán của từng nhân viên.
+-BankSystemInterface:
+  + transactionStatus: Trạng thái giao dịch với hệ thống ngân hàng.
+  + sendBankTransaction(): Gửi giao dịch ngân hàng.
+  + retryBankTransaction(): Thử lại giao dịch nếu hệ thống ngân hàng không sẵn sàng.
+- RunPayrollController:
+  + payrollDate: Ngày bảng lương được chạy.
+  + employeeList: Danh sách nhân viên cần được thanh toán.
+  + calculatePay(): Tính toán lương cho từng nhân viên dựa trên thông tin từ thẻ chấm công, đơn hàng và thông tin nhân viên.
+  + processPayment(): Xử lý thanh toán cho nhân viên, bao gồm in phiếu lương hoặc gửi giao dịch ngân hàng.
+  + checkBankSystemStatus(): Kiểm tra trạng thái hệ thống ngân hàng và xử lý nếu hệ thống không khả dụng.
+  + deleteEmployee(): Xóa nhân viên đã bị đánh dấu xóa sau khi bảng lương đã được xử lý.
+- Employee:
+  + employeeId: Mã số nhân viên.
+  + name: Tên nhân viên.
+  + salary: Lương cơ bản của nhân viên (nếu là nhân viên lương cố định).
+  + hourlyRate: Mức lương theo giờ (nếu là nhân viên lương theo giờ).
+  + benefits: Các phúc lợi (Bảo hiểm, nghỉ phép, v.v.).
+  + paymentMethod: Phương thức thanh toán (chuyển khoản, lấy phiếu lương, v.v.).
+  + status: Trạng thái của nhân viên (đang làm việc, đã nghỉ việc, v.v.).\
+  + calculatePay(): Tính toán lương cho nhân viên.
+  + generatePaycheck(): Tạo phiếu lương cho nhân viên.
+  + sendPayment(): Gửi thanh toán cho nhân viên qua chuyển khoản ngân hàng.
+- Payroll:
+  + payrollDate: Ngày chạy bảng lương.
+  + employeePayments: Danh sách các khoản thanh toán cho nhân viên.
+  + runPayroll(): Chạy bảng lương cho tất cả nhân viên.
+  + generateReports(): Tạo báo cáo về bảng lương.
+  + processPayments(): Xử lý thanh toán cho nhân viên.
+### e. Mối quan hệ giữa các lớp
+- PayrollInterface (Giao diện với người dùng) giao tiếp với RunPayrollController để yêu cầu xử lý bảng lương.
+- RunPayrollController truy xuất và tính toán dữ liệu từ Employee và tạo đối tượng Payroll.
+- RunPayrollController gửi giao dịch đến BankSystemInterface nếu phương thức thanh toán là chuyển khoản.
+- RunPayrollController tạo phiếu lương nếu phương thức thanh toán là phiếu lương/nhận tay.
+- PayrollInterface hiển thị kết quả cho người dùng sau khi bảng lương hoàn tất.
+### f. Biểu đồ lớp mô tả lớp phân tích
+![RunPayroll](https://www.planttext.com/api/plantuml/png/L8x13S8m34Nldi8BT8SsQG_S44nWMYCX4WSbpY6pzS18h413Wn2d9xt_l-NN-koJKjJi7S0bP5ae5ZnIYS6vWoZ7AysCb73unORaVYv9sVyr3Cn1T1lYAKixONVZEDQ61HQzQS79Frme_9cDNzacrKq00tOTMWJJQ2l77LlSioprwJS0003__mC0)

@@ -181,29 +181,43 @@
   + Cung cấp các phương thức để tạo mới, cập nhật và xóa thông tin nhân viên từ cơ sở dữ liệu.
   + Khi thao tác là xóa, sẽ đánh dấu nhân viên là đã bị xóa trong hệ thống (thay vì xóa hoàn toàn).
 ### d. Một số thuộc tính và phương thức của các lớp phân tích:
-- LoginUI: 
-  + username: Tên người dùng.
-  + password: Mật khẩu.
-  + getCredentials(): Nhận tên và mật khẩu từ người dùng.
-  + displayError(message: String): Hiển thị thông báo lỗi nếu thông tin đăng nhập không hợp lệ.
-  + displayLoginScreen(): Hiển thị giao diện đăng nhập cho người dùng.
-- LoginController:
-  + authenticator: Đối tượng thực hiện xác thực tên và mật khẩu.
-  + processLogin(username: String, password: String): Nhận tên và mật khẩu từ LoginUI, gọi Authenticator để kiểm tra tính hợp lệ và thực hiện đăng nhập.
-  + handleLoginError(): Xử lý khi tên hoặc mật khẩu không hợp lệ, yêu cầu người dùng nhập lại hoặc hủy đăng nhập.
-- Authenticator:
-  + validUsernames: Danh sách tên người dùng hợp lệ.
-  + validPasswords: Danh sách mật khẩu hợp lệ (hoặc kiểm tra với cơ sở dữ liệu).
-  + validateCredentials(username: String, password: String): Kiểm tra tính hợp lệ của tên người dùng và mật khẩu.
-- User:
-  + username: Tên đăng nhập của người dùng.
-  + password: Mật khẩu của người dùng.
-  + role: Vai trò của người dùng (ví dụ: quản trị viên, nhân viên).
-  + isValidPassword(password: String): Kiểm tra mật khẩu có đúng với người dùng không.
-  + getRole(): Lấy vai trò của người dùng sau khi đăng nhập thành công.
+- PayrollAdministratorInterface:
+  + selectedAction: Lưu trữ thao tác mà Quản trị viên chọn (thêm, cập nhật, xóa nhân viên).
+  + employeeId: ID của nhân viên khi Quản trị viên thực hiện cập nhật hoặc xóa.
+  + chooseAction(): Cho phép Quản trị viên chọn thao tác (thêm, cập nhật, xóa).
+  + displayEmployeeForm(): Hiển thị biểu mẫu thông tin nhân viên.
+  + showMessage(String message): Hiển thị thông báo cho Quản trị viên (ví dụ: thông báo lỗi hoặc thành công).
+  + getEmployeeDetails(): Thu thập thông tin nhân viên từ Quản trị viên.
+- EmployeeInformationForm:
+  + employeeName: Tên của nhân viên.
+  + employeeType: Loại nhân viên (giờ, lương cố định, hoa hồng).
+  + salaryOrHourlyRate: Lương hoặc mức lương theo giờ.
+  + displayForm(): Hiển thị biểu mẫu nhập thông tin nhân viên.
+  + getInput(): Thu thập thông tin từ Quản trị viên và trả về dưới dạng đối tượng.
+- MaintainEmployeeController:
+  + action: Hành động mà Quản trị viên muốn thực hiện (thêm, cập nhật, xóa).
+  + employee: Đối tượng nhân viên để thao tác (thêm, cập nhật, xóa).
+  + handleAddEmployee(): Xử lý thêm mới nhân viên vào hệ thống.
+  + handleUpdateEmployee(): Xử lý cập nhật thông tin nhân viên.
+  + handleDeleteEmployee(): Xử lý xóa nhân viên khỏi hệ thống.
+  + validateEmployeeData(): Kiểm tra tính hợp lệ của thông tin nhân viên (trước khi thêm hoặc cập nhật).
+- Employee:
+  + employeeId: ID của nhân viên.
+  + name: Tên nhân viên.
+  + employeeType: Loại nhân viên (giờ, lương cố định, hoa hồng).
+  + salary: Lương của nhân viên (dành cho nhân viên lương cố định).
+  + hourlyRate: Mức lương theo giờ (dành cho nhân viên làm theo giờ).
+  + commissionRate: Mức hoa hồng (dành cho nhân viên hoa hồng).
+  + status: Trạng thái nhân viên (đã xóa hay không).
+  + createEmployee(): Tạo bản ghi nhân viên mới.
+  + updateEmployee(): Cập nhật thông tin nhân viên.
+  + deleteEmployee(): Đánh dấu nhân viên là đã xóa.
+  + getEmployeeById(String employeeId): Truy xuất thông tin nhân viên theo ID.
+  + validateData(): Kiểm tra tính hợp lệ của thông tin nhân viên.
 ### e. Mối quan hệ giữa các lớp
-- LoginUI (Boundary): Tương tác với người dùng, nhận thông tin đăng nhập và hiển thị lỗi khi cần thiết.
-- LoginController (Controller): Quản lý quá trình đăng nhập, sử dụng Authenticator để xác thực tên và mật khẩu, sau đó thực hiện đăng nhập hoặc xử lý lỗi.
-- Authenticator (Entity): Kiểm tra tính hợp lệ của tên người dùng và mật khẩu, trả về kết quả cho LoginController.
-- User (Entity): Đại diện cho người dùng trong hệ thống, chứa thông tin đăng nhập, mật khẩu và vai trò.
+- PayrollAdministratorInterface: Giao tiếp trực tiếp với Quản trị viên tiền lương. Gửi yêu cầu và nhận phản hồi từ MaintainEmployeeController. Hiển thị biểu mẫu và thông báo cho người dùng.
+- EmployeeInformationForm: Được PayrollAdministratorInterface gọi để hiển thị biểu mẫu thông tin nhân viên. Gửi thông tin nhân viên đã nhập tới MaintainEmployeeController.
+- MaintainEmployeeController: Xử lý các yêu cầu từ PayrollAdministratorInterface (thêm, cập nhật, xóa nhân viên). Tương tác với Employee để thực hiện thao tác trên dữ liệu (thêm, cập nhật, xóa). Cập nhật kết quả và phản hồi lại cho PayrollAdministratorInterface.
+- Employee: Là thực thể dữ liệu, lưu trữ thông tin nhân viên. MaintainEmployeeController thao tác trên Employee để thêm, cập nhật hoặc xóa thông tin nhân viên.
 ### f. Biểu đồ lớp mô tả lớp phân tích
+![maintainEmployee](https://www.planttext.com/api/plantuml/png/L90nRW9134Lxdy8Nu0AfM1Q8A2Abo0NCxi1QclMWMI_IdY27e4hAI8Y6YYaezYHp0gwG6KK1KLYodj__XM_XEksKlFQj1LYxNcho0xxJu9srHTsoSAUUrFcLgF4RgWnIXyN3NRGxwmPZLh9nlYLb9ykqP6i6bHDDJVX6B9hcNox_k3K-UoKOKTP7LuPpW08d4opn1L-P72h7otK7ipkCuSYepNYMRJeAIZD-2-vv_14eipLFraUJe-DNXViO3enr32Uq7CDd_nI0gP4wV-4N003__mC0)

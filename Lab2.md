@@ -413,7 +413,7 @@
        private int employeeID;
        private date startDate;
        private List<TimecardEntry> entries;
-       private string status;
+       private String status;
        private date submitedDate;
        // Add a new entry for hours worked.
        public void addEntry(date: Date, hours: Double, chargeNumber: String){
@@ -427,7 +427,7 @@
 
     class TimeCard {
        private int employeeID;
-       private string name;
+       private String name;
        private double maxHoursPerWeek; 
        private boolean isHourly;
        //Check if employee can extra hours work

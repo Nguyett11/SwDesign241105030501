@@ -1,5 +1,6 @@
 # LAB2 PHÂN TÍCH CÁC CA SỬ DỤNG TRONG PAYROLL SYSTEM
 
+## A. Phân tích các ca sử dụng trong hệ thống Payroll System
 ## 1. Ca sử dụng Create Administrative Report
 ### a. Các lớp phân tích
 - Lớp Boundary: PayrollAdministratorUI
@@ -347,3 +348,14 @@
 - PayrollInterface hiển thị kết quả cho người dùng sau khi bảng lương hoàn tất.
 ### f. Biểu đồ lớp mô tả lớp phân tích
 ![RunPayroll](https://www.planttext.com/api/plantuml/png/L8x13S8m34Nldi8BT8SsQG_S44nWMYCX4WSbpY6pzS18h413Wn2d9xt_l-NN-koJKjJi7S0bP5ae5ZnIYS6vWoZ7AysCb73unORaVYv9sVyr3Cn1T1lYAKixONVZEDQ61HQzQS79Frme_9cDNzacrKq00tOTMWJJQ2l77LlSioprwJS0003__mC0)
+
+## Code Java mô phỏng ca sử dụng Maintain Timecard
+    package Demo.MaintainTimecard;
+    public class DemoMaintainTimecard {
+       public static void main(String[] args){
+       
+       }
+    }
+    class MaintainTimecard {
+    
+    }

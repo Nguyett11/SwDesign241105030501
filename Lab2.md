@@ -354,11 +354,86 @@
     public class DemoMaintainTimecard {
        public static void main(String[] args){
        
+          EmployeeUI employeeUI = new EmployeeUI();
+          employeeUI.showTimecard(timecard);
+          employeeUI.selectChargeNumber();
+          employeeUI.displayError(messageStr);
+          employeeUI.acknowledgeSubmission();
+
+          TimeCardController tc = new TimeCardController();
+          tc.retrieveOrCreateTimecard(employee: Employee);
+          tc.getChargeNumbers();
+          tc.enterHours(date, hours, chargeNumber);
+          tc.validateHours(timecard);
+          tc.
        }
     }
 
     class EmployeeUI {
        //View Timecard
-       public void viewTimecard() {
+       public void showTimecard(timecard: Timecard) {
        }
+       //Select chargeNumber
+       public void selectChargeNumber(){
+       }
+       //Show error message
+       public void displayError(message: String){
+       }
+       //Request confirm 
+       public boolean confirmSubmission(){
+       }
+       //Confirm submit Timecard and no edit
+       public void acknowledgeSubmission(){
+       }    
+    }
+
+    class TimeCardController {
+       // Get currently TimeCard of employee or create new TimeCard 
+       public void retrieveOrCreateTimecard(employee: Employee){
+       }
+       // Get list NumberCharge from DB
+       public void getChargeNumbers(){
+       }
+       // Employee can enter hours work
+       public void enterHours(date: Date, hours: Double, chargeNumber: String){
+       }
+       // Check valid hours work
+       public void validateHours(timecard: Timecard){
+       }
+       // Submit TimeCard
+       public void submitTimecard(){
+       }
+       // Handle error
+       public void handleDatabaseError(){
+       }
+    }
+
+    class Employee{
+       private int employeeID;
+       private date startDate;
+       private List<TimecardEntry> entries;
+       private string status;
+       private date submitedDate;
+       // Add a new entry for hours worked.
+       public void addEntry(date: Date, hours: Double, chargeNumber: String){
+       }
+       // Mark submited Timecard
+       public void markAsSubmitted(date: Date){
+       }
+       // Check if the timesheet is editable.
+       public boolean isEditable(){
+       }
+
+    class TimeCard {
+       private int employeeID;
+       private string name;
+       private double maxHoursPerWeek; 
+       private boolean isHourly;
+       //Check if employee can extra hours work
+       public boolean canWorkOvertime(){
+       }
+       //Get employee info
+       public string getEmployeeDetails(){
+       }
+    }       
     }

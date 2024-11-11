@@ -365,7 +365,8 @@
           tc.getChargeNumbers();
           tc.enterHours(date, hours, chargeNumber);
           tc.validateHours(timecard);
-          tc.
+          tc.submitTimecard();
+          tc.handleDatabaseError();
        }
     }
 

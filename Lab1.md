@@ -74,7 +74,13 @@ Hệ thống kiểm tra quyền truy cập và trạng thái của đơn hàng t
 ### b. Biểu Sequence của ca sử dụng Select Payment
 ![sequence](https://www.planttext.com/api/plantuml/png/b5J1Qjj04BtlLmmv9T3-WC4bO4fJ6d9o3ZskfKLQkbgPrQw8pZdqK0enFVHG2cv3AHW2EHGAqg675VcF_OB-GaUIBIbsb3ew66btvhrvCs_yj_Xpd6Ygj8a4ePwE5RoCvYBE62Eps4YVggmzENzDl5Xg5GkOyeXvLFcJvbimHPZKN6VjpUQxXIFZCPo5zhk4bDkLX79HNie0PEZocpcaTWcPNHdmNFxJm0MBG8Uk-CeXu5I2iCi8yrpnteFnc6n0uVcBNdKZAAzwc8DHRpiUhoQlu_KG8UboAwHTwIDGJ2lEKhQvEpmYP3UkNyS8tY3u9QfK58djBonRSucbj1qYLEYM3SAg5WdQvTyuUE7TBQQvujFwX00-3pDkJaSmnSYuGunSyOKJ9X8sm58kxFNJIPJ9uCAu_CT0yMWC_-7kR8tff6gGhAVoeOEgZ389gGhOcObcJ2KxnXgSwIF6cM3OHtaFk6PQkpDnnG8n4Eg9naXeoavYev93hmVz3CBgRD0aNJTFxsxD4Fksxi0LDxnhr2DgUmjmFsaVHMOMSVr_etSQKYguJ_Mw3qUrhLzjgm4SmFKS1BxlPRFookM_SRmABLMjJcZHi8W71qs1cla7zGJnPXM13EmoQyJk1L_tlUtAS4Q_gzDcYsSMbmnPbp84hpffLcnNyRicVY_XGpoOzdczKSVuM_sB_mC00F__0m00)
 ### c. Nhiệm vụ của từng lớp phân tích:
-      - EmployeeUI: Đây là lớp giao diện người dùng cho phép nhân viên tương tác với hệ thống. Nó hiển thị thông tin thời gian và nhận đầu vào từ người dùng.
+      - EmployeeUI: 
+        + viewTimecard(): Phương thức cho phép nhân viên xem thông tin thời gian làm việc hiện tại.
+        + enterHours(): Phương thức cho phép nhân viên nhập giờ làm việc vào timecard.
+        + submitTimecard(): Phương thức để nhân viên gửi timecard đã nhập.
+        + acknowledgeSubmission(): Phương thức để nhân viên xác nhận đã nhận thông báo về việc timecard đã được gửi và không thể chỉnh sửa.
+        + cancelOperation(): Phương thức cho phép nhân viên hủy bỏ thao tác đang thực hiện (như nhập giờ làm việc).
+        + selectChargeNumber(): Phương thức cho phép nhân viên chọn số tài khoản để ghi nhận giờ làm việc (nếu có sẵn từ hệ thống).
       - TimecardController: Lớp này xử lý logic của ứng dụng và kết nối giữa giao diện người dùng và lớp entity. Nó quản lý việc gửi thông tin thời gian làm việc đến hệ thống và xác thực các giờ làm việc.
       - Timecard: Lớp này đại diện cho thông tin thời gian làm việc của nhân viên. Nó lưu trữ các thuộc tính như ID thời gian, ngày bắt đầu, ngày kết thúc, số giờ làm việc và trạng thái của thời gian.
       - Employee: chứa thông tin cơ bản của nhân viên như mã nhân viên, tên, và truy xuất thông tin liên quan đến thời gian làm việc của họ.

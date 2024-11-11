@@ -80,29 +80,35 @@ Hệ thống kiểm tra quyền truy cập và trạng thái của đơn hàng t
       - Employee: chứa thông tin cơ bản của nhân viên như mã nhân viên, tên, và truy xuất thông tin liên quan đến thời gian làm việc của họ.
 ### d. Một số thuộc tính và phương thức của các lớp phân tích:
       - EmployeeUI:
-        + viewTimecard(): Phương thức cho phép nhân viên xem thông tin thời gian làm việc hiện tại.
-        + enterHours(): Phương thức cho phép nhân viên nhập giờ làm việc vào timecard.
-        + submitTimecard(): Phương thức để nhân viên gửi timecard đã nhập.
-        + acknowledgeSubmission(): Phương thức để nhân viên xác nhận đã nhận thông báo về việc timecard đã được gửi và không thể chỉnh sửa.
-        + cancelOperation(): Phương thức cho phép nhân viên hủy bỏ thao tác đang thực hiện (như nhập giờ làm việc).
-        + selectChargeNumber(): Phương thức cho phép nhân viên chọn số tài khoản để ghi nhận giờ làm việc (nếu có sẵn từ hệ thống).
+        + showTimecard(timecard: Timecard): void — Hiển thị bảng chấm công hiện tại cho nhân viên.
+        + selectChargeNumber(): void - Cho phép nhân viên nhập tài khoản thanh toán
+        + displayError(message: String): void — Hiển thị thông báo lỗi.
+        + confirmSubmission(): boolean — Yêu cầu nhân viên xác nhận gửi bảng chấm công.
+        + acknowledgeMessage(message: String): void — Hiển thị thông báo và chờ nhân viên xác nhận.
       - TimecardController: 
-        + submitTimecard(): Phương thức này được gọi khi nhân viên muốn gửi thông tin thời gian làm việc của họ. Nó thực hiện các bước xác thực và cập nhật trạng thái của thời gian.
-        + validateHours(): Phương thức này kiểm tra tính hợp lệ của số giờ làm việc mà nhân viên đã nhập.
-        + retrieveChargeNumbers(): Phương thức này được gọi để lấy danh sách các số tài khoản mà nhân viên có thể sử dụng khi nhập giờ làm việc.
-        + retrieveTimecard(): Phương thức này truy xuất thời gian hiện tại của nhân viên.
-        + saveHours(): Phương thức này lưu trữ số giờ làm việc mà nhân viên đã nhập vào đối tượng Timecard.
+        + retrieveOrCreateTimecard(employee: Employee): Timecard — Lấy bảng chấm công hiện tại của nhân viên hoặc tạo bảng mới nếu không có.
+        + getChargeNumbers(): List<String> — Lấy danh sách số phí từ Cơ sở Dữ liệu Quản lý Dự án.
+        + enterHours(date: Date, hours: Double, chargeNumber: String): void — Cho phép nhân viên nhập số giờ làm việc cho ngày cụ thể và số phí.
+        + validateHours(timecard: Timecard): boolean — Kiểm tra tính hợp lệ của số giờ nhập vào so với giới hạn cho phép.
+        + submitTimecard(): void — Gửi bảng chấm công và thay đổi trạng thái thành “đã gửi”.
+        + handleDatabaseError(): void — Xử lý trường hợp không thể truy cập Cơ sở Dữ liệu Quản lý Dự án.
       - Timecard: 
-        + timecardId
-        + startDate
-        + endDate
-        + hoursWorked (mảng chứa số giờ làm việc theo từng số tài khoản)
+        + employeeID: String — Mã nhân viên sở hữu bảng chấm công.
+        + startDate: Date — Ngày bắt đầu của kỳ chấm công.
+        + endDate: Date — Ngày kết thúc của kỳ chấm công.
+        + entries: List<TimecardEntry> — Danh sách các mục ghi số giờ làm việc.
+        + status: String — Trạng thái của bảng chấm công (ví dụ: “đang xử lý”, “đã gửi”).
+        + submittedDate: Date — Ngày gửi bảng chấm công (nếu có).
+        + addEntry(date: Date, hours: Double, chargeNumber: String): void — Thêm một mục ghi mới về số giờ làm việc.
+        + markAsSubmitted(date: Date): void — Đánh dấu bảng chấm công là đã gửi và đặt ngày gửi.
+        + isEditable(): boolean — Kiểm tra xem bảng chấm công có thể chỉnh sửa được không.
       - Employee:
-        + employeeId: ID duy nhất của nhân viên.
-        + name: Tên nhân viên.
-        + Chức vụ
-        + Giới hạn giờ làm việc (như số giờ tối đa cho phép)
-        + payment: Tham chiếu đến phương thức thanh toán của nhân viên, kiểu Payment.
+        + employeeID: String — Mã định danh duy nhất của nhân viên.
+        + name: String — Tên của nhân viên.
+        + maxHoursPerWeek: Double — Số giờ tối đa được phép làm việc trong tuần.
+        + isHourly: boolean — Cho biết nhân viên là nhân viên tính theo giờ hay nhân viên hưởng lương.
+        + canWorkOvertime(): boolean — Xác định xem nhân viên có được phép làm thêm giờ không.
+        + getEmployeeDetails(): String — Lấy thông tin cơ bản của nhân viên.
       
 ### e. Mối quan hệ giữa các lớp
       - EmployeeUI giao tiếp với TimecardController để cho phép nhân viên thực hiện các hành động như xem và cập nhật thông tin thời gian. EmployeeUI gửi yêu cầu tới TimecardController..

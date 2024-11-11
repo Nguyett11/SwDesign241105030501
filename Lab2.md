@@ -356,6 +356,9 @@
        
        }
     }
-    class MaintainTimecard {
-    
+
+    class EmployeeUI {
+       //View Timecard
+       public void viewTimecard() {
+       }
     }

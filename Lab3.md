@@ -16,6 +16,7 @@
   ![image](https://github.com/user-attachments/assets/14bd8d59-6f24-4888-8e3d-aa5e826929de)
   
 ## 3. Design element to owning package map:
+- Hãy ánh xạ các phần tử thiết kế vào các gói:
  ![image](https://github.com/user-attachments/assets/26b11e0b-039a-4d20-896d-b05ad8479e25)
 
 ## 4. Architectural layers and their dependencies**

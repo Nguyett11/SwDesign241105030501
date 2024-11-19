@@ -13,11 +13,10 @@
   
 ## 2. Analysis class to design element map:
 - Dưới đây là ánh xạ các lớp phân tích từ sơ đồ trên sang các phần tử thiết kế của hệ thống:
-  ![image]()
+  ![image](https://github.com/user-attachments/assets/14bd8d59-6f24-4888-8e3d-aa5e826929de)
   
-## 3. Design element to owning package map:**
-- Dưới đây ánh xạ các phần tử thiết kế vào các gói:
-  ![image](![image](https://github.com/user-attachments/assets/7a0fc9e9-b5ea-406f-a0a3-aa1b1a85dfe4)
-  
+## 3. Design element to owning package map:
+ ![image](https://github.com/user-attachments/assets/26b11e0b-039a-4d20-896d-b05ad8479e25)
+
 ## 4. Architectural layers and their dependencies**
   ![Diagram](https://planttext.com/api/plantuml/png/X98nJiD044NxESLNcbIvW1LP2U8084umh2Vs2djjxUmcYX0r1GrNe4p50LnGa8lu15o1E8Z28Gxjp9i_UgFvQZyM6jY7M9L4K-nVk_R55N1viTynpEURGSbRyKeDcmVE1PFv_5X9KznuKN61WwtT18_qHEUePTEKrlm3NKMrJbHn9tvjZOoJrnmOIsCEy6NedlKtPehRo0v5rpuZjrtxFbGRLPhDqb6J1AQkgkZwWYWsDXGqnfxa_9LDa4af-J4fr7IHFGaRt2D1L1a83TfdHd-kbC1By5RMX_rPFx7oTKMq49Vrd_4D003__mC0)

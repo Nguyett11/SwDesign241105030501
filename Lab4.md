@@ -103,7 +103,7 @@ Cung cấp báo cáo và giao tiếp với nhân viên, quản lý, hoặc các 
 ![RP](https://www.planttext.com/api/plantuml/png/d5LBRjim4Dtp50DjuYno0Is2074B54Y284OFCA763b6ALCXH01yZDsZHNLVTUz65YzuZ9-WLIbbaRKjK6sId-Rttvf6IVcz-N7X6nssj1Kgs3XPhprHVQYi_0Nee-XXsYKA84xZSVf7WstlV5vwsd-7dyylcMG7_-lwo-MfMeDNscu775ere0hYIga73S8jhPxM-TLQIzoeqTWGn2_jqSJJrhcwqNHDTey4LrHHItLXAmpvV3Dcwv9Xj1p75TaUD3L7i_Xlb9Hq96R7B1ueUfg0G5JBUewVanJp5XqwaPB3xy3JEpiSEbi1EhLRaOkMkDRDJ8SPEX-6naIKiYUL3AlZtDk44a8plUmL9OXbEcTmwzLufps5qkDpP1BiZRfq1EfZEqkOtpqqB0PbhzfhbvyIej9ybk0_pqu3r5XFoI6_q989DI7cLCNk8ANFI_In1efQjHgQGcWq0uXRzjSwvuF69KaCoeJcEfvmuK63DKhbw4R2g8y9_xZgW2VSW_mwCFWebDFrph6GKZpyakUNRfkfjwteNZDpceNAh3oL53pxk8AkSWBmPSIwj4ai1uV_lHJWzCjMDPRLK4bbPCrOlBa9BzwVu0m00__y30000)
 
 ## 3. Describe persistence-related behavior
-### a. Hành vi liên quan đến lưu trữ và truy xuất dữ liệu (persistence-related behavior) trong hệ thống:
+### Hành vi liên quan đến lưu trữ và truy xuất dữ liệu (persistence-related behavior) trong hệ thống:
 #### Các lớp liên quan đến lưu trữ:
 - Employee:
   + Lưu trữ thông tin cơ bản về nhân viên, bao gồm:

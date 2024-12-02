@@ -1,64 +1,57 @@
-# Lab5 Payroll System Subsystem Design
-## 1. Distribute subsystem behavior to subsystem elements:
-Hệ thống được chia thành 4 hệ thống con chính, mỗi hệ thống con đảm nhiệm các chức năng cụ thể:
+# Lab5 Payroll System Subsystem Design 
 
-**a) Payroll Processing Subsystem**
-- Chức năng chính: Tính toán và thực hiện thanh toán lương.
+## 1. Phân phối hành vi của hệ thống con đến các thành phần:
+### Hệ thống được chia thành 4 hệ thống con chính, mỗi hệ thống con đảm nhiệm một chức năng cụ thể:
+#### a) Payroll Processing Subsystem (Hệ thống xử lý lương)
+- Chức năng chính: Tính toán và thực hiện thanh toán lương cho nhân viên.
 - Thành phần chính:
-  - `PayrollController`: Quản lý logic nghiệp vụ liên quan đến tính toán lương.
-  - `BankSystemProxy`: Kết nối với ngân hàng để chuyển khoản lương.
-  - `PrinterServiceProxy`: In phiếu lương.
-  - `PayrollDatabase`: Lưu trữ thông tin lương.
+  + PayrollController: Quản lý logic nghiệp vụ liên quan đến tính toán lương.
+  + BankSystemProxy: Kết nối với hệ thống ngân hàng để thực hiện chuyển khoản lương.
+  + PrinterServiceProxy: Hỗ trợ in phiếu lương.
+  + PayrollDatabase: Lưu trữ thông tin chi tiết về bảng lương.
+#### b) Timecard Subsystem (Hệ thống quản lý thẻ chấm công)
+- Chức năng chính: Quản lý giờ làm việc của nhân viên và trạng thái thẻ chấm công.
+- Thành phần chính:
+  + TimecardController: Xử lý logic nghiệp vụ liên quan đến thông tin chấm công.
+  + TimecardForm: Giao diện nhập liệu về giờ làm việc và trạng thái thẻ.
+  + ProjectManagementDatabase: Hỗ trợ truy xuất danh sách mã dự án để liên kết thông tin chấm công.
+#### c) Employee Management Subsystem (Hệ thống quản lý nhân viên)
+- Chức năng chính: Quản lý thông tin cá nhân và trạng thái làm việc của nhân viên.
+- Thành phần chính:
+  + Employee: Lớp thực thể đại diện cho thông tin nhân viên.
+  + EmployeeDatabase: Cơ sở dữ liệu lưu trữ thông tin nhân viên.
+#### d) Scheduler Subsystem (Hệ thống lập lịch)
+- Chức năng chính: Theo dõi thời gian và tự động kích hoạt quy trình tính lương theo lịch định sẵn.
+- Thành phần chính:
+  + SystemClock: Theo dõi thời gian hệ thống và kích hoạt quy trình “Run Payroll” vào thời điểm đã định.
     
-**b) Timecard Subsystem**
-- Chức năng chính: Quản lý giờ làm việc và trạng thái thẻ chấm công.
-- Thành phần chính:
-  - `TimecardController`: Xử lý logic nghiệp vụ liên quan đến thẻ chấm công.
-  - `TimecardForm`: Giao diện nhập liệu giờ làm việc và trạng thái thẻ.
-  - `ProjectManagementDatabase`: Lấy danh sách mã dự án.
-    
+## 2. Mô tả chi tiết các hệ thống con:
+- Timecard Subsystem
+  + Quản lý thông tin giờ làm việc của nhân viên.
+  + Liên kết với cơ sở dữ liệu quản lý dự án để lấy danh sách mã dự án.
+  + Cập nhật trạng thái thẻ chấm công.
+- Payroll Processing Subsystem
+  + Tính toán bảng lương dựa trên giờ làm việc và trạng thái của nhân viên.
+  + Thực hiện thanh toán qua ngân hàng hoặc in phiếu lương.
+  + Lưu trữ thông tin về lương trong cơ sở dữ liệu.
+- Employee Management Subsystem
+  + Lưu trữ và quản lý thông tin nhân viên.
+  + Cập nhật trạng thái nhân viên (đang làm việc, nghỉ việc, bị xóa).
+  + Cung cấp thông tin nhân viên cho các hệ thống con khác khi cần.
+- Scheduler Subsystem
+  + Theo dõi thời gian và tự động kích hoạt quá trình tính lương vào thời gian được định trước.
 
-**c) Employee Management Subsystem**
-- Chức năng chính: Quản lý thông tin nhân viên và trạng thái (đang làm việc, bị xóa, nghỉ việc).
-- Thành phần chính:
-  - `Employee`: Thực thể lưu trữ thông tin nhân viên.
-  - `EmployeeDatabase`: Cơ sở dữ liệu nhân viên.
-    
-**d) Scheduler Subsystem**
-- Chức năng chính: Theo dõi thời gian và kích hoạt quy trình tính lương theo lịch.
-- Thành phần chính:
-  - `SystemClock`: Theo dõi thời gian và kích hoạt quy trình Run Payroll theo thời gian định trước.
+## 3. Mô tả mối quan hệ phụ thuộc giữa các hệ thống con:
+- Timecard Subsystem: Phụ thuộc vào Employee Management Subsystem để truy xuất thông tin nhân viên.
+- Payroll Processing Subsystem:
+  + Phụ thuộc vào Employee Management Subsystem để lấy danh sách nhân viên.
+  + Phụ thuộc vào Timecard Subsystem để lấy thông tin giờ làm việc của từng nhân viên.
+- Scheduler Subsystem: Hoạt động độc lập nhưng đóng vai trò kích hoạt Payroll Processing Subsystem theo lịch định sẵn.
 
-## 2. Document subsystem elements
-Mô tả chi tiết về các hệ thống con:
-
-### Timecard Subsystem
-- Quản lý thông tin giờ làm việc của nhân viên.
-- Lấy danh sách mã dự án từ cơ sở dữ liệu.
-- Cập nhật trạng thái thẻ chấm công.
-### Payroll Processing Subsystem
-- Xử lý tính toán lương cho từng nhân viên dựa trên giờ làm việc và trạng thái.
-- Thực hiện thanh toán qua ngân hàng hoặc in phiếu lương.
-- Lưu thông tin lương vào cơ sở dữ liệu.
-### Employee Management Subsystem
-- Lưu trữ thông tin nhân viên.
-- Cập nhật trạng thái nhân viên (đang làm việc hoặc bị xóa).
-- Cung cấp thông tin cho các hệ thống con khác.
-### Scheduler Subsystem
-- Theo dõi thời gian và kích hoạt quy trình tính lương tự động vào thời gian được định trước.
-
-## 3. Describe subsystem dependencies
-Mối quan hệ phụ thuộc giữa các hệ thống con:
-- Timecard Subsystem phụ thuộc vào Employee Management Subsystem để lấy thông tin nhân viên.
-- Payroll Processing Subsystem phụ thuộc vào:
-  - Employee Management Subsystem để lấy danh sách nhân viên.
-  - Timecard Subsystem để lấy thông tin giờ làm việc.
-- Scheduler Subsystem không phụ thuộc vào các hệ thống con khác nhưng kích hoạt Payroll Processing Subsystem.
-
-## 4. Checkpoints
-- **Phân chia hợp lý**: Mỗi hệ thống con có trách nhiệm riêng biệt, với các thành phần được phân bổ rõ ràng và logic.
-- **Phụ thuộc rõ ràng**: Mối quan hệ giữa các hệ thống con được thể hiện rõ qua sơ đồ và các phụ thuộc cụ thể.
-- **Tính mở rộng**: Các hệ thống con có thể mở rộng hoặc thay đổi mà không ảnh hưởng đến toàn bộ hệ thống.
+## 4. Kiểm tra chất lượng hệ thống:
+- Phân chia hợp lý: Các hệ thống con được xác định với trách nhiệm rõ ràng, không chồng chéo.
+- Mối quan hệ phụ thuộc rõ ràng: Mối quan hệ giữa các hệ thống con được xác định và mô tả chi tiết, đảm bảo tính minh bạch.
+- Khả năng mở rộng: Thiết kế linh hoạt cho phép mở rộng hoặc thay đổi từng hệ thống con mà không gây ảnh hưởng lớn đến hệ thống tổng thể.
 
 
 ### Component Diagram
